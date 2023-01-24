@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+html, body {
+    min-height: 100%;
+  }
+
+body{
+
+    background: radial-gradient(#4b6cb7 0%, #182848 100%);
+    font-family: 'Roboto', sans-serif;
+
+}
+
+#box{
+
+
+background: radial-gradient(#ffffff 0%, #cccccc 100%);
+padding: 20px;
+border: 2px solid rgb(65, 65, 65);
+border-radius: 5px;
+width: max-content;
+padding-right: auto;
+padding-left: auto;
+
+
+width: max-content;
+height: max-content;
+    
+display: block;
+margin-left: auto;
+margin-right: auto;
+
+position: absolute;
+left: 50%;
+top: 50%;
+-webkit-transform: translate(-50%, -50%);
+transform: translate(-50%, -50%);
+}
+
+#box #title{
+
+background: linear-gradient(180deg, #4b6cb7 0%, #182848 100%);
+color: whitesmoke;
+border-style: solid;
+border-width: 2px;
+border-color: #182848;
+border-radius: 5px;
+padding: 10px;
+font-size: 20px;
+width: max-content;
+height: max-content;
+
+display: block;
+margin-left: auto;
+margin-right: auto;
+margin-top: auto;
+margin-bottom: auto;
+}
+
+.button {
+
+    font-size: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin: 5px;
+    
+}
+
+.button:enabled:hover{
+
+    background-color: rgb(156, 192, 156);
+    cursor: pointer;
+
+}
+
+
+.button:enabled:active{
+
+    background-color: rgb(81, 127, 81);
+
+}
+
+
+.linkbutton:hover{
+
+    background-color: #2f5196;
+
+}
+
+.linkbutton:active{
+
+    background-color: #182848;
+
+}
+
+.options{
+
+    display:block;
+    background: linear-gradient(180deg, #4b6cb7 0%, #182848 100%);
+    color: whitesmoke;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #182848;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 20px;
+    width: max-content;
+    height: max-content;
+
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.center{
+
+text-align: center;
+
+}
+
+#current-time{
+
+    text-align: center;
+   
+}
+
+textarea{
+    margin-top: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    min-width: 250px;
+    min-height: 200px
+}
+
+
+.logout{
+
+    text-decoration: none;
+    background: linear-gradient(180deg, #4b6cb7 0%, #182848 100%);
+    color: whitesmoke;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #182848;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 20px;
+    width: max-content;
+    height: max-content;
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+    margin-top: 20px;
+}
+
+.logout:hover{
+
+    background: #182848;
+    cursor: pointer;
+
+}
+
+.logout:active{
+
+    background: #0e1729;
+
+}
+
+.hcenter{
+
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+
+    margin-top: 1px;
+    margin-bottom: 1px;
+
+}
+
+.form{
+
+    text-align: center;
+
+}
+
+.formelement{
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+}

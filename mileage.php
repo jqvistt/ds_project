@@ -1,15 +1,12 @@
 <?php
-session_start();
 
-    include("connection.php");
-    include("functions.php");
+include("includes/mileage.inc.php")
 
-    $user_data = check_login($con);
-
-?>
+    ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,19 +15,22 @@ session_start();
     <title>Digishop Mileage Allowance</title>
 </head>
 
-    <body>   
+<body>
 
     <div id="box" class="vertical-center">
-    
-    <h1 id="title">Digishop Mileage Allowance</h1>
 
-    <br>
+        <h1 id="title">Digishop Mileage Allowance</h1>
 
-    <p class="center">Welcome, <?php echo $user_data['name'], " ", $user_data['surname'], "!";?></p>
+        <br>
 
-    <p class="center" id="notice"><p>
+        <p class="center">Welcome,
+            <?php echo $user_data['name'], " ", $user_data['surname'], "!"; ?>
+        </p>
 
-    <form class="form" action="index.php" method="POST">
+        <p class="center" id="notice">
+        <p>
+
+        <form class="form" method="post">
             <label for="start_location">Starting Location:</label>
             <input type="text" name="start_location" required><br><br>
             <label for="end_location">Ending Location:</label>
@@ -39,18 +39,18 @@ session_start();
             <input type="number" name="km_traveled" required><br><br>
             <label for="date_traveled">Date Traveled:</label>
             <input type="date" name="date_traveled" required><br><br>
-            <input type="submit" value="Submit">
-    </form>
+            <input type="submit" value="submit" name="submit">
+        </form>
 
-    <a class="logout" href="index.php">Go Back</a>
+        <a class="logout" href="index.php">Go Back</a>
 
-    <a class="logout" href="logout.php">Log out</a>    
-    
+        <a class="logout" href="logout.php">Log out</a>
+
     </div>
 
     <script src="js/jsfunctions.js">
     </script>
 
 </body>
-</html>
 
+</html>

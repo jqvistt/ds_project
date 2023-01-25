@@ -1,14 +1,11 @@
 <?php
-session_start();
 
-    include("connection.php");
-    include("functions.php");
-
-    $user_data = check_login($con);
+include("includes/index.inc.php");
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,47 +13,56 @@ session_start();
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <title>Digishop Check-in</title>
 </head>
-<body>   
+
+<body>
 
     <div id="box" class="vertical-center">
-    
-    <h1 id="title">Digishop Employee Check-in</h1>
 
-    <br>
+        <h1 id="title">Digishop Employee Check-in</h1>
 
-    <p class="center">Welcome, <?php echo $user_data['name'], " ", $user_data['surname'], "!";?></p>
+        <br>
 
-    <h1 id="current-time"></h1>
+        <p class="center">Welcome,
+            <?php echo $user_data['name'], " ", $user_data['surname'], "!"; ?>
+        </p>
 
-    <br>
+        <h1 id="current-time"></h1>
 
-    <p class="center" id="notice"><p>
+        <br>
 
-    <div class="options">
+        <p class="center" id="notice">
+        <p>
 
-    <input class="button" id="checkinbtn" type="submit" value="Check in">
-    <input class="button" id="breakbtn" type="submit" value="Break">
-    <input class="button" id="checkoutbtn" type="submit" value="Check Out" onclick="">
+        <div class="options">
 
-    </div>
+            <form action="" method="post">
+                <input class="button" id="checkinbtn" type="submit" value="Check in">
+            </form>
 
-    <br>
-    <textarea id="comments" rows="1" cols="50" wrap="physical" name="comments"></textarea>
-    <br>
-    <input type="file" name="attatchment" id="file" multiple>
+            <form action="" method="post">
+                <input class="button" id="breakbtn" type="submit" value="Break">
+            </form>
 
-    <a class="logout" href="mileage.php">Add mileage allowance</a>
+            <form action="" method="post">
+                <input class="button" id="checkoutbtn" type="submit" value="Check Out" onclick="">
+            </form>
 
-    <a class="logout" href="logout.php">Log out</a>    
-    
+        </div>
+
+        <br>
+        <textarea id="comments" rows="1" cols="50" wrap="physical" name="comments"></textarea>
+        <br>
+        <input type="file" name="attatchment" id="file" multiple>
+
+        <a class="logout" href="mileage.php">Add mileage allowance</a>
+
+        <a class="logout" href="includes/logout.inc.php">Log out</a>
+
     </div>
 </body>
 
-<script src="js/digitalclock.js">
-</script>
-<script src="js/jsfunctions.js">
+<script src="js/JS_Main.js">
 </script>
 
 
 </html>
-

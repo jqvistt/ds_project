@@ -1,6 +1,4 @@
 window.addEventListener('load', function(){
-    
-const mysql = require('mysql2');
 
 //Setting of the initials state of the buttons
 document.getElementById(`checkinbtn`).disabled = false;
@@ -16,6 +14,7 @@ let exitDate;
 let breakStart;
 let breakEnd;
 let breakTime;
+let tempBreakTime;
 
 //Check in button's functionality, checks for click and saves the date at time of click and logs the date in console along with a message.
 document.getElementById('checkinbtn').addEventListener('click', function(){
@@ -83,7 +82,9 @@ this.document.getElementById('breakbtn').addEventListener('click', function(){
         minutes = minutes % 60;
         seconds = seconds % 60;
 
-        breakTime = `${hours < 10 ? '0' + hours : hours}:${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+        tempBreakTime = `${hours < 10 ? '0' + hours : hours}:${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+
+        breakTime = tempBreakTime;
 
         console.log(`The users total break time is ${breakTime}`);
 
@@ -112,7 +113,7 @@ this.document.getElementById('breakbtn').addEventListener('click', function(){
             document.getElementById("notice").innerHTML = "";
           }, 2000);
 
-        //Sets the buttons to the initial state
+        //Sets the buttons back to the initial state
         document.getElementById(`checkinbtn`).disabled = false;
         document.getElementById(`breakbtn`).disabled = true;
         document.getElementById(`checkoutbtn`).disabled = true;     
@@ -123,14 +124,3 @@ this.document.getElementById('breakbtn').addEventListener('click', function(){
     });
 });
 });
-
-function send_data(){
-
-    var comments = document.getElementById("comments").value;
-    var files = document.getElementById('file').value;
-
-    var httpr = new XMLHttpRequest();
-    httpr.open("aj_f/get_data.php");
-    httpr.setRequestHeader("Content-type","")
-
-}

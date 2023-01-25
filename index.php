@@ -36,7 +36,7 @@ session_start();
 
     <input class="button" id="checkinbtn" type="submit" value="Check in">
     <input class="button" id="breakbtn" type="submit" value="Break">
-    <input class="button" id="checkoutbtn" type="submit" value="Check Out" onclick="send_data()">
+    <input class="button" id="checkoutbtn" type="submit" value="Check Out" onclick="">
 
     </div>
 

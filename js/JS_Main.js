@@ -1,12 +1,5 @@
 window.addEventListener('load', function () {
 
-
-
-  //Setting of the initials state of the buttons
-  document.getElementById(`checkinbtn`).disabled = false;
-  document.getElementById(`breakbtn`).disabled = true;
-  document.getElementById(`checkoutbtn`).disabled = true;
-
   let isActive = false;
   let onBreak = false;
 
@@ -16,6 +9,31 @@ window.addEventListener('load', function () {
   let breakStart;
   let breakEnd;
   let breakTime;
+
+  let comments;
+
+  //Getting the variables from the database, IF THERE ARE ANY VARIABLES otherwise everything shall be nullified as per default.
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', './includes/user_data.inc.php?isActive=' + isActive + '&onBreak=' + onBreak + '&entryDateTime=' + entryDateTime + '&exitDateTime=' + exitDateTime + '&breakStart=' + breakStart + '&breakEnd=' + breakEnd + '&breakTime=' + breakTime, true);
+  xhr.onreadystatechange = function () {
+    if (this.readyState === 4 && this.status === 200) {
+      console.log(this.responseText);
+    }
+  };
+
+  //Setting the correct starting states of the buttons
+  setInterval(() => {
+    if (!isActive && !onBreak) {
+      document.getElementById(`checkinbtn`).disabled = false;
+      document.getElementById(`breakbtn`).disabled = true;
+      document.getElementById(`checkoutbtn`).disabled = true;
+    } else {
+      document.getElementById(`checkinbtn`).disabled = true;
+      document.getElementById(`breakbtn`).disabled = false;
+      document.getElementById(`checkoutbtn`).disabled = false;
+    }
+  }, 10);
+
 
   //Check in button's functionality, checks for click and saves the date at time of click and logs the date in console along with a message.
   document.getElementById('checkinbtn').addEventListener('click', function () {
@@ -29,6 +47,17 @@ window.addEventListener('load', function () {
     setTimeout(function () {
       document.getElementById("notice").innerHTML = "";
     }, 2000);
+
+    //Trying to send the variables to the temp storage database by sending a post request to user_data.inc.php
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', './includes/user_data.inc.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = function () {
+      if (this.readyState === 4 && this.status === 200) {
+        console.log(this.responseText);
+      }
+    };
+    xhr.send('&isActive=' + isActive + '&onBreak=' + onBreak + '&entryDateTime=' + entryDateTime + '&exitDateTime=' + exitDateTime + '&breakStart=' + breakStart + '&breakEnd=' + breakEnd + '&breakTime=' + breakTime);
 
     //Makes sure the right buttons are enabled
     document.getElementById(`checkinbtn`).disabled = true;
@@ -99,15 +128,29 @@ window.addEventListener('load', function () {
       document.getElementById(`breakbtn`).disabled = false;
       document.getElementById(`checkoutbtn`).disabled = false;
     }
+
+    //Trying to send the variables to the temp storage database by sending a post request to user_data.inc.php
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', './includes/user_data.inc.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = function () {
+      if (this.readyState === 4 && this.status === 200) {
+        console.log(this.responseText);
+      }
+    };
+    xhr.send('&isActive=' + isActive + '&onBreak=' + onBreak + '&entryDateTime=' + entryDateTime + '&exitDateTime=' + exitDateTime + '&breakStart=' + breakStart + '&breakEnd=' + breakEnd + '&breakTime=' + breakTime);
+
   });
 
   //The code for the check-out button
   document.getElementById('checkoutbtn').addEventListener('click', function () {
+
+    comments = document.getElementById("comments").value;
     isActive = false;
-    
+
     let rawExitDateTime = new Date();
     exitDateTime = rawExitDateTime.toLocaleString('en-GB');
-    
+
     console.log(`User checked out at ${exitDateTime}`);
 
     //Gives the user a notice to indicate everythings working
@@ -118,22 +161,45 @@ window.addEventListener('load', function () {
 
     //Trying to send the variables to the index pages include php file
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', './includes/index.inc.php', true);
+    xhr.open('POST', './includes/user_data.inc.php', true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onreadystatechange = function () {
       if (this.readyState === 4 && this.status === 200) {
         console.log(this.responseText);
       }
     };
-    xhr.send('entryDateTime=' + entryDateTime + '&exitDateTime=' + exitDateTime + '&breakStart=' + breakStart + '&breakEnd=' + breakEnd + '&breakTime=' + breakTime);
+    xhr.send('&isActive=' + isActive + '&onBreak=' + onBreak + '&entryDateTime=' + entryDateTime + '&exitDateTime=' + exitDateTime + '&breakStart=' + breakStart + '&breakEnd=' + breakEnd + '&breakTime=' + breakTime);
 
-    //Sets the buttons back to the initial state
+    //Sets the buttons back to the initial state and clears the inputs
     document.getElementById(`checkinbtn`).disabled = false;
     document.getElementById(`breakbtn`).disabled = true;
     document.getElementById(`checkoutbtn`).disabled = true;
-
     document.getElementById("comments").value = "";
     document.getElementById("file").value = "";
+
+    //Nullifying the variables
+    isActive = false;
+    onBreak = false;
+
+    entryDateTime = "";
+    exitDateTime = "";
+
+    breakStart = "";
+    breakEnd = "";
+    breakTime = "";
+
+    comments = "";
+
+    //Trying to send the NOW EMPTY variables to the temp storage database by sending a post request of the nullified variables to user_data.inc.php
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', './includes/user_data.inc.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = function () {
+      if (this.readyState === 4 && this.status === 200) {
+        console.log(this.responseText);
+      }
+    };
+    xhr.send('&isActive=' + isActive + '&onBreak=' + onBreak + '&entryDateTime=' + entryDateTime + '&exitDateTime=' + exitDateTime + '&breakStart=' + breakStart + '&breakEnd=' + breakEnd + '&breakTime=' + breakTime);
 
   });
 });

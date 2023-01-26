@@ -34,7 +34,6 @@ include("includes/index.inc.php");
 
         <h1 id="current-time">00:00:00</h1>
 
-        <br>
 
         <p class="center" id="notice">
         <p>

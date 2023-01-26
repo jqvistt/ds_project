@@ -20,11 +20,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $breakStart = $_POST['breakStart'];
     $breakEnd = $_POST['breakEnd'];
     $breakTime = $_POST['breakTime'];
+    $comments = $_POST['comments'];
 
 
         //Save to database
 
-        $query = "insert into `time_tracking` (user_id, name, surname, entryDateTime, exitDateTime, breakStart, breakEnd, breakTime) values ('$user_id','$name','$surname','$entryDateTime','$exitDateTime','$breakStart','$breakEnd','$breakTime')";
+        $query = "insert into `time_tracking` (user_id, name, surname, entryDateTime, exitDateTime, breakStart, breakEnd, breakTime, comments) values 
+                                    ('$user_id','$name','$surname','$entryDateTime','$exitDateTime','$breakStart','$breakEnd','$breakTime','$comments')";
 
         if (!mysqli_query($con, $query)) {
             die("Error: " . mysqli_error($con));

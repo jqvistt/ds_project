@@ -44,12 +44,9 @@ include("includes/mileage.inc.php")
 
         <a class="logout" href="index.php">Go Back</a>
 
-        <a class="logout" href="logout.php">Log out</a>
+        <a class="logout" href="includes/logout.inc.php">Log out</a>
 
     </div>
-
-    <script src="js/jsfunctions.js">
-    </script>
 
 </body>
 

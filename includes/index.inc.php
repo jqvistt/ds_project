@@ -1,22 +1,34 @@
 <?php
+
 session_start();
 
-include("includes/connection.inc.php");
-include("includes/functions.inc.php");
+include("connection.inc.php");
+include("functions.inc.php");
 
 $user_data = check_login($con);
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    if (isset($_POST['checkin_submit'])) {
-        $user_id = $_SESSION['user_id'];
-        $action_type = 'check-in';
-        $timestamp = date("Y-m-d H:i:s");
-        $query = "INSERT INTO time_tracking (user_id, action_type, timestamp) VALUES ('$user_id', '$action_type', '$timestamp')";
-        mysqli_query($con, $query);
+    
+    //something was posted (hopefully the checkout button)
+
+    $user_id = $_SESSION['user_id'];
+    $name = $user_data['name'];
+    $surname = $user_data['surname'];
+
+    $entryDateTime = $_POST['entryDateTime'];
+    $exitDateTime = $_POST['exitDateTime'];
+    $breakStart = $_POST['breakStart'];
+    $breakEnd = $_POST['breakEnd'];
+    $breakTime = $_POST['breakTime'];
+
+
+        //Save to database
+
+        $query = "insert into `time_tracking` (user_id, name, surname, entryDateTime, exitDateTime, breakStart, breakEnd, breakTime) values ('$user_id','$name','$surname','$entryDateTime','$exitDateTime','$breakStart','$breakEnd','$breakTime')";
+
         if (!mysqli_query($con, $query)) {
             die("Error: " . mysqli_error($con));
         }
-        header("Location: ./index.php");
-        die;
-    }
+    die;
+
 }

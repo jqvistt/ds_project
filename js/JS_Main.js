@@ -1,5 +1,7 @@
 window.addEventListener('load', function () {
 
+
+
   //Setting of the initials state of the buttons
   document.getElementById(`checkinbtn`).disabled = false;
   document.getElementById(`breakbtn`).disabled = true;
@@ -8,19 +10,19 @@ window.addEventListener('load', function () {
   let isActive = false;
   let onBreak = false;
 
-  let entryDate;
-  let exitDate;
+  let entryDateTime;
+  let exitDateTime;
 
   let breakStart;
   let breakEnd;
   let breakTime;
-  let tempBreakTime;
 
   //Check in button's functionality, checks for click and saves the date at time of click and logs the date in console along with a message.
   document.getElementById('checkinbtn').addEventListener('click', function () {
     isActive = true;
-    entryDate = new Date();
-    console.log(`User checked in at ${entryDate}`);
+    let rawEntryDateTime = new Date();
+    entryDateTime = rawEntryDateTime.toLocaleString('en-GB');
+    console.log(`User checked in at ${entryDateTime}`);
 
     //Gives the user a notice to indicate everythings working
     document.getElementById('notice').innerHTML = 'You have been checked in successfully!';
@@ -81,9 +83,7 @@ window.addEventListener('load', function () {
       minutes = minutes % 60;
       seconds = seconds % 60;
 
-      tempBreakTime = `${hours < 10 ? '0' + hours : hours}:${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
-
-      breakTime = tempBreakTime;
+      breakTime = `${hours < 10 ? '0' + hours : hours}:${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
 
       console.log(`The users total break time is ${breakTime}`);
 
@@ -99,38 +99,51 @@ window.addEventListener('load', function () {
       document.getElementById(`breakbtn`).disabled = false;
       document.getElementById(`checkoutbtn`).disabled = false;
     }
-
-
-    document.getElementById('checkoutbtn').addEventListener('click', function () {
-      isActive = false;
-      exitDate = new Date();
-      console.log(`User checked out at ${exitDate}`);
-
-      //Gives the user a notice to indicate everythings working
-      document.getElementById('notice').innerHTML = 'You have been checked out successfully!';
-      setTimeout(function () {
-        document.getElementById("notice").innerHTML = "";
-      }, 2000);
-
-      //Sets the buttons back to the initial state
-      document.getElementById(`checkinbtn`).disabled = false;
-      document.getElementById(`breakbtn`).disabled = true;
-      document.getElementById(`checkoutbtn`).disabled = true;
-
-      document.getElementById("comments").value = "";
-      document.getElementById("file").value = "";
-
-    });
   });
 
-  //The script for the live-clock that is on the page
-  setInterval(() => {
+  //The code for the check-out button
+  document.getElementById('checkoutbtn').addEventListener('click', function () {
+    isActive = false;
+    
+    let rawExitDateTime = new Date();
+    exitDateTime = rawExitDateTime.toLocaleString('en-GB');
+    
+    console.log(`User checked out at ${exitDateTime}`);
 
+    //Gives the user a notice to indicate everythings working
+    document.getElementById('notice').innerHTML = 'You have been checked out successfully!';
+    setTimeout(function () {
+      document.getElementById("notice").innerHTML = "";
+    }, 2000);
+
+    //Trying to send the variables to the index pages include php file
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', './includes/index.inc.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = function () {
+      if (this.readyState === 4 && this.status === 200) {
+        console.log(this.responseText);
+      }
+    };
+    xhr.send('entryDateTime=' + entryDateTime + '&exitDateTime=' + exitDateTime + '&breakStart=' + breakStart + '&breakEnd=' + breakEnd + '&breakTime=' + breakTime);
+
+    //Sets the buttons back to the initial state
+    document.getElementById(`checkinbtn`).disabled = false;
+    document.getElementById(`breakbtn`).disabled = true;
+    document.getElementById(`checkoutbtn`).disabled = true;
+
+    document.getElementById("comments").value = "";
+    document.getElementById("file").value = "";
+
+  });
+});
+
+//The script for the live-clock that is on the page
+document.addEventListener("DOMContentLoaded", function (event) {
+  setInterval(() => {
     var t = new Date();
     var re = t.toLocaleString('en-GB');
     re = re.slice(12);
     document.getElementById('current-time').innerHTML = re;
-
-  }, 1000)
-
+  }, 1000);
 });

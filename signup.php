@@ -1,11 +1,12 @@
 <?php
 
-    include("includes/signup.inc.php");
+include("includes/signup.inc.php");
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,41 +14,57 @@
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <title>Log In</title>
 </head>
+
 <body>
 
-<div id="box">
 
-<form method="post">
-    <div id="title">Digishop Employee Sign Up</div>
 
-    <br><br><br>
+    <h1 class="title">Digishop CICO Sign-up</h1>
 
-    <input class="formelement" type="text" name="user_name" placeholder="Username">
+    <form method="post">
 
-    <br>
+        <br><br><br>
 
-    <input class="formelement" type="text" name="name" placeholder="Your name">
+        <input class="formelement" type="text" name="user_name" placeholder="Username" required>
 
-    <br>
+        <br><br>
 
-    <input class="formelement" type="text" name="surname" placeholder="Your surname">
+        <input class="formelement" type="text" name="name" placeholder="Your name" required>
 
-    <br>
+        <br><br>
 
-    <input class="formelement"type="email" name="email" placeholder="Your E-mail adress">   
+        <input class="formelement" type="text" name="surname" placeholder="Your surname" required>
 
-    <br>
+        <br><br>
 
-    <input class="formelement" type="password" name="password" placeholder="New password">   
+        <input class="formelement" type="email" name="email" placeholder="Your E-mail adress" required>
 
-    <br>
+        <br><br>
 
-    <input class="logout" type="submit" value="Sign up">
+        <input class="formelement" type="password" name="password" placeholder="New password" required>
 
-    <a href="login.php" class="logout">Log in here!</a>
-</form>
+        <br><br>
 
-</div>
-    
+        <input class="formelement" type="password" name="repassword" placeholder="Repeat password" required>
+
+        <br><br>
+
+        <input class="formelement" type="text" name="authkey" placeholder="Authentication key" required>
+
+        <br><br>
+
+
+        <input class="button" type="submit" value="Sign up">
+
+        <br><br><br>
+
+        <a href="login.php" class="button">Log in here!</a>
+    </form>
+
+    <div class="footer">
+        <p>&#169; Joakim Lönnqvist 2023 - E-Mail: joakim.is.lonnqvist@gmail.com - Phone: +358 40 654 0459</p>
+    </div>
+
 </body>
+
 </html>

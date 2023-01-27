@@ -17,26 +17,29 @@ include("includes/login.inc.php")
 
 <body>
 
-	<div id="box" class="textboxes">
+	<h1 class="title">Digishop CICO Log In</h1>
 
-		<form method="post">
-			<div id="title">Digishop Employee Log In</div>
+	<br><br><br><br>
+	<form method="post">
 
-			<br><br><br>
 
-			<input type="text" class="hcenter" name="user_name" placeholder="Username" required>
+		<input type="text" class="hcenter" name="user_name" placeholder="Username" required>
 
-			<br>
+		<br><br>
 
-			<input type="password" class="hcenter" name="password" placeholder="Password" required>
+		<input type="password" class="hcenter" name="password" placeholder="Password" required>
 
-			<br>
+		<br><br>
 
-			<input class="logout" type="submit" value="Log in">
+		<input class="button" type="submit" value="Log in">
 
-			<a href="signup.php" class="logout">Sign up here!</a>
-		</form>
+		<br><br><br>
 
+		<a href="signup.php" class="button">Sign up here!</a>
+	</form>
+
+	<div class="footer">
+		<p>&#169; Joakim Lönnqvist 2023 - E-Mail: joakim.is.lonnqvist@gmail.com - Phone: +358 40 654 0459</p>
 	</div>
 
 </body>

@@ -17,15 +17,14 @@ include("includes/mileage.inc.php")
 
 <body>
 
-    <div id="box" class="vertical-center">
-
-        <h1 id="title">Digishop Mileage Allowance</h1>
-
-        <br>
+    <h1 id="title">Digishop Mileage Allowance</h1>
+    <div class="centerbox">
 
         <p class="center">Welcome,
             <?php echo $user_data['name'], " ", $user_data['surname'], "!"; ?>
         </p>
+
+        <br>
 
         <p class="center" id="notice">
         <p>
@@ -38,14 +37,19 @@ include("includes/mileage.inc.php")
             <label for="km_traveled">Km Traveled:</label>
             <input type="number" name="km_traveled" required><br><br>
             <label for="date_traveled">Date Traveled:</label>
-            <input type="date" name="date_traveled" required><br><br>
-            <input type="submit" value="submit" name="submit">
+            <input type="date" name="date_traveled" required><br>
+            <input class="button" type="submit" value="submit" name="submit">
         </form>
 
-        <a class="logout" href="index.php">Go Back</a>
+        <br>
+        <a class="button" href="index.php">Go Back</a>
 
-        <a class="logout" href="includes/logout.inc.php">Log out</a>
+        <a class="button" href="includes/logout.inc.php">Log out</a>
 
+    </div>
+
+    <div class="footer">
+        <p>&#169; Joakim Lönnqvist 2023 - E-Mail: joakim.is.lonnqvist@gmail.com - Phone: +358 40 654 0459</p>
     </div>
 
 </body>

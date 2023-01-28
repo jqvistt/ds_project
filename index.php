@@ -14,7 +14,8 @@ include("includes/index.inc.php");
 
     <link href="css/style.css" rel="stylesheet" type="text/css" />
 
-    <title>Digishop Check-in</title>
+    <title>Digishop CICO</title>
+    <link rel="icon" type="image/ico" href="favicon.ico">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
@@ -23,6 +24,7 @@ include("includes/index.inc.php");
 <body>
 
     <h1 id="title">Digishop CICO</h1>
+
     <div class="centerbox">
 
         <p class="center">Welcome,
@@ -55,9 +57,19 @@ include("includes/index.inc.php");
 
     </div>
 
-    <br><br><br><br>
+    <div id="admincontainer">
 
-    <a class="button" href="admin_panel.php" id="admin_panel">Admin Panel</a>
+        <!--         if the user is admin, display the button
+ -->
+        <?php
+        if ($row['is_admin'] == 1) {
+            echo '<a class="button" href="admin_panel.php" id="admin_panel">Admin Panel</a>';
+        }
+        ?>
+
+    </div>
+
+    <br><br><br><br>
 
     <div class="footer">
         <p>&#169; Joakim Lönnqvist 2023 - E-Mail: joakim.is.lonnqvist@gmail.com - Phone: +358 40 654 0459</p>

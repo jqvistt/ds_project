@@ -10,7 +10,13 @@ body {
     text-align: center;
     background-color: #f2f2f2;
     font-family: 'Roboto', sans-serif;
-    
+
+}
+
+#title{
+
+    margin-top: 20px;
+
 }
 
 .centerbox {
@@ -164,10 +170,8 @@ textarea {
 
 }
 
-#admin_panel{
-
-    margin-bottom: 100px;
-
+#admin_panel {
+    margin-top: 20px;
 }
 
 .footer {
@@ -179,5 +183,15 @@ textarea {
     background-color: rgb(193, 193, 193);
     color: rgb(151, 151, 151);
     text-align: center;
+    z-index: 999;
+}
+
+.logo {
+
+    width: 10%;
+    height: 10%;
+    display: block;
+    float: left;
+    position: fixed;
     z-index: 999;
 }

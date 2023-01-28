@@ -7,20 +7,29 @@ include("functions.inc.php");
 
 $user_data = check_login($con);
 
+$user_id = $_SESSION['user_id'];
+
+// Check if the user is an admin
+$queryadmin = "SELECT is_admin FROM users WHERE user_id = '$user_id'";
+$result = mysqli_query($con, $queryadmin);
+$row = mysqli_fetch_assoc($result);
+
+
+// Checks if something is posted
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     
     //something was posted (hopefully the checkout button)
 
-    $user_id = $_SESSION['user_id'];
-    $name = $user_data['name'];
-    $surname = $user_data['surname'];
+    //Declaring variables
+    $name = $user_data['name']; //gets first name of user
+    $surname = $user_data['surname']; // gets surname of user
 
-    $entryDateTime = $_POST['entryDateTime'];
-    $exitDateTime = $_POST['exitDateTime'];
-    $breakStart = $_POST['breakStart'];
-    $breakEnd = $_POST['breakEnd'];
-    $breakTime = $_POST['breakTime'];
-    $comments = $_POST['comments'];
+    $entryDateTime = $_POST['entryDateTime']; // gets the variable entryDateTime
+    $exitDateTime = $_POST['exitDateTime']; // gets the variable exitDateTime
+    $breakStart = $_POST['breakStart']; //gets the variable breakStart
+    $breakEnd = $_POST['breakEnd']; // gets the variable breakEnd
+    $breakTime = $_POST['breakTime']; // gets the variable breakTime
+    $comments = $_POST['comments']; // gets the value for the variable "comments"
 
 
         //Save to database
@@ -35,3 +44,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     die;
 
 }
+
+
+

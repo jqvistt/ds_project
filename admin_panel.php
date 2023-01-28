@@ -13,6 +13,7 @@ include("includes/admin_panel.inc.php")
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <title>Digishop CICO Admin Panel</title>
+    <link rel="icon" type="image/ico" href="favicon.ico">
 </head>
 
 <body>

@@ -27,6 +27,16 @@ function check_login($con)
 
 }
 
+function check_admin($con, $user_data)
+{
+    if($user_data['is_admin'] == 1) {
+        return true;
+    } else {
+        header("Location: index.php");
+        die;
+    }
+}
+
 function random_num($length)
 {
 

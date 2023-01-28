@@ -12,7 +12,8 @@ include("includes/login.inc.php")
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="css/style.css" rel="stylesheet" type="text/css" />
-	<title>Log In</title>
+	<title>Digishop CICO Log-In</title>
+	<link rel="icon" type="image/ico" href="favicon.ico">
 </head>
 
 <body>

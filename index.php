@@ -10,18 +10,18 @@ include("includes/index.inc.php");
 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <link href="css/style.css" rel="stylesheet" type="text/css" />
 
     <title>Digishop CICO</title>
-    <link rel="icon" type="image/ico" href="favicon.ico">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
 </head>
 
-<body>
+<body onload="document.body.style.opacity='1'">
+    <img class ="logo" src="CICO.png" alt="">
 
     <h1 id="title">Digishop CICO</h1>
 
@@ -46,8 +46,8 @@ include("includes/index.inc.php");
         </div>
 
         <br>
-        <textarea id="comments" rows="1" cols="50" wrap="physical" name="comments"></textarea>
-        <input class="files" type="file" name="attatchment" id="file" multiple>
+        <textarea id="comments" rows="5" cols="50" wrap="physical" name="comments" placeholder="Comments about the day..."></textarea>
+        <input class="files" type="file" name="files" id="file" multiple>
 
         <br><br>
 
@@ -63,7 +63,7 @@ include("includes/index.inc.php");
  -->
         <?php
         if ($row['is_admin'] == 1) {
-            echo '<a class="button" href="admin_panel.php" id="admin_panel">Admin Panel</a>';
+            echo '<a class="button" href="http://localhost/phpmyadmin/" id="admin_panel">Admin Panel</a>';
         }
         ?>
 
@@ -72,7 +72,9 @@ include("includes/index.inc.php");
     <br><br><br><br>
 
     <div class="footer">
-        <p>&#169; Joakim Lönnqvist 2023 - E-Mail: joakim.is.lonnqvist@gmail.com - Phone: +358 40 654 0459</p>
+        <a href="https://linktr.ee/trypzo">&#169; Joakim Lönnqvist 2023</a>
+        <a href="mailto: joakim.is.lonnqvist@gmail.com">joakim.is.lonnqvist@gmail.com</a>
+        <a href="tel: +358 40 654 0459">+358 40 654 0459</a>
     </div>
 </body>
 

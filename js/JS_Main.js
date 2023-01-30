@@ -241,8 +241,6 @@ window.addEventListener('load', function () {
 
 });
 
-
-
 //The script for the live-clock that is on the page
 document.addEventListener("DOMContentLoaded", function (event) {
   setInterval(() => {
@@ -253,4 +251,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
   }, 1000);
 
 
+});
+
+$(document).ready(function(){
+  $('#comments').on('input', function () {
+    this.style.height = 'auto';
+    this.style.height = (this.scrollHeight) + 'px';
+  });
 });

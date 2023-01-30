@@ -16,11 +16,11 @@ include("includes/admin_panel.inc.php")
     <link rel="icon" type="image/ico" href="favicon.ico">
 </head>
 
-<body>
+<body onload="document.body.style.opacity='1'">
 
     <h1 id="title">Digishop CICO Admin Panel</h1>
 
-    <div class="centerbox">
+    <div class="centerbox" style="">
 
 
 
@@ -30,21 +30,10 @@ include("includes/admin_panel.inc.php")
             <?php echo $user_data['name'], " ", $user_data['surname'], "!"; ?>
         </p>
 
-        <br><br><br>
 
         <p>This is the Digishop CICO Admin panel. Here you can view entries, and sort them to your liking.</p>
-        <p>To get started please select one of the options below!</p>
 
-        <br><br><br><br>
-
-        <div class="options">
-            <button class="action" id="option1" name="option1">Option 1</button>
-            <button class="action" id="option2" name="option2">Option 2</button>
-            <button class="action" id="option3" name="option3">Option 3</button>
-            <button class="action" id="option4" name="option4">Option 4</button>
-            <button class="action" id="option5" name="option5">Option 5</button>
-            <button class="action" id="option6" name="option6">Option 6</button>
-        </div>
+        
 
     </div>
 
@@ -55,7 +44,9 @@ include("includes/admin_panel.inc.php")
     </div>
 
     <div class="footer">
-        <p>&#169; Joakim Lönnqvist 2023 - E-Mail: joakim.is.lonnqvist@gmail.com - Phone: +358 40 654 0459</p>
+        <a href="https://linktr.ee/trypzo">&#169; Joakim Lönnqvist 2023</a>
+        <a href="mailto: joakim.is.lonnqvist@gmail.com">joakim.is.lonnqvist@gmail.com</a>
+        <a href="tel: +358 40 654 0459">+358 40 654 0459</a>
     </div>
 
 </body>

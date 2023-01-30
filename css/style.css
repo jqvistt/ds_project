@@ -1,106 +1,105 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
+@keyframes slideUp {
+    0% {
+        transform: translateY(100%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
 html,
 body {
     min-height: 100%;
 }
 
 body {
-
     text-align: center;
     background-color: #f2f2f2;
     font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    /* Add a default font-size */
 
+    /* Add a fade in transition when the page loads */
+    opacity: 0;
+    animation: 1s ease-out 0s 1 fadeIn;
 }
 
-#title{
+#title {
+    margin: 20px 0;
+    /* Use shorthand notation */
 
-    margin-top: 20px;
-
+    /* Add an animation when page loads*/
+    animation: 1s ease-out 0s 1 slideUp;
 }
 
 .centerbox {
+    width: fit-content;
+    height: fit-content;
+    /* Make width to alway fit content */
 
+    margin: 10px auto;
+    /* Use shorthand notation */
 
-    /* background-color: #fff;
-    padding: 20px;
-    border: 2px solid rgb(65, 65, 65);
-    border-radius: 5px;
-    
-    padding-right: auto;
-    padding-left: auto;
-
-
-    width: max-content;
-    height: max-content;
-
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-
-    
-     */
-
-
-    width: max-content;
-    margin: 0 auto;
     text-align: center;
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px #aaa;
 
+    /* Add an animation when page loads*/
+    animation: 1s ease-out 0s 1 slideUp;
 }
 
 .options {
-
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
-    margin-left: 50px;
-    margin-right: 50px;
-
+    margin: 0 50px;
+    /* Use shorthand notation */
 }
 
 .action {
-
     text-decoration: none;
+    margin: 10px;
     background: #363636;
     color: white;
     border: 0px;
     border-radius: 5px;
     padding: 10px;
     box-shadow: 0px 0px 10px #aaa;
-
     user-select: none;
-
+    transition: background-color 0.2s ease-in-out;
+    /* Add transition for hover effect */
 }
 
 .action:enabled:hover {
-
     background: #363650;
     cursor: pointer;
-
 }
 
-
 .action:enabled:active {
-
     background-color: rgb(81, 127, 81);
-
 }
 
 .action:disabled {
-
     box-shadow: 0px 0px 0px;
     background-color: #696969;
-
 }
 
-
-
 .button {
-
     text-decoration: none;
     background: #363636;
     color: white;
@@ -108,70 +107,79 @@ body {
     border-radius: 5px;
     padding: 10px;
     font-size: 15px;
-
     box-shadow: 0px 0px 10px #aaa;
-
     width: max-content;
     height: max-content;
-
-    margin-left: auto;
-    margin-right: auto;
-
+    margin: 10px auto;
+    /* Use shorthand notation */
     display: block;
-
-    margin-top: 10px;
-
     user-select: none;
+    transition: background-color 0.2s ease-in-out;
+    /* Add transition for hover effect */
 }
 
 .button:hover {
-
     background: #363650;
     cursor: pointer;
-
 }
 
 .button:active {
-
     background: #0e1729;
     box-shadow: 0px 0px 0px;
-
 }
 
-textarea {
-    margin-top: 10px;
+.centerbox textarea {
+    /*     margin-top: 10px;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
     text-align: left;
+
     min-width: 385px;
-    min-height: 200px
+    min-height: 200px;
+
+    max-width: 1600px;
+
+    padding: 10px;
+    font-size: 16px; */
+
+    display: inline-block;
+    max-width: 1600px;
+    min-width: 200px;
+
+    min-height: 15px;
 }
 
 .files {
-
     padding-top: 10px;
-    display: block;
-    float: left;
-    clear: left;
-
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
 }
 
 #current-time:hover {
-
     cursor: default;
     user-select: none;
-
 }
 
 #notice {
-
     color: green;
-
 }
 
 #admin_panel {
-    margin-top: 20px;
+    margin-top: 30px;
+    /* Add an animation when page loads*/
+}
+
+.logo {
+
+    position: absolute;
+    top: 5px;
+    left: 15px;
+
+    width: 50px;
+    height: 50px;
+
 }
 
 .footer {
@@ -184,14 +192,64 @@ textarea {
     color: rgb(151, 151, 151);
     text-align: center;
     z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    padding: 5px;
 }
 
-.logo {
+.footer a {
 
-    width: 10%;
-    height: 10%;
-    display: block;
-    float: left;
-    position: fixed;
-    z-index: 999;
+    margin-right: 20px;
+    margin-left: 20px;
+    text-decoration: none;
+    color: rgb(124, 124, 124);
+
+}
+
+@media only screen and (max-width: 991px) {
+    .options {
+        flex-direction: row;
+        align-items: center;
+        margin: 0;
+    }
+
+    .centerbox textarea {
+
+        max-width: 360px;
+
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    body {
+        font-size: 14px;
+    }
+
+    .centerbox {
+        width: 90%;
+    }
+
+    .centerbox textarea {
+
+        max-width: 290px;
+
+    }
+
+    .footer {
+
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+
+    }
+
+    .footer a {
+
+        margin-top: 2px;
+        margin-bottom: 2px;
+        font-size: 11px;
+
+    }
 }

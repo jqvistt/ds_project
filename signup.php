@@ -13,18 +13,17 @@ include("includes/signup.inc.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <title>Digishop CICO Sign-Up</title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 
-<body>
-
-
+<body onload="document.body.style.opacity='1'">
 
     <h1 class="title">Digishop CICO Sign-up</h1>
 
+    <img src="CICO.png" alt="" width="100px" height="100px">
+
     <form method="post">
 
-        <br><br><br>
+        <br><br>
 
         <input class="formelement" type="text" name="user_name" placeholder="Username" required>
 
@@ -63,7 +62,9 @@ include("includes/signup.inc.php");
     </form>
 
     <div class="footer">
-        <p>&#169; Joakim Lönnqvist 2023 - E-Mail: joakim.is.lonnqvist@gmail.com - Phone: +358 40 654 0459</p>
+        <a href="https://linktr.ee/trypzo">&#169; Joakim Lönnqvist 2023</a>
+        <a href="mailto: joakim.is.lonnqvist@gmail.com">joakim.is.lonnqvist@gmail.com</a>
+        <a href="tel: +358 40 654 0459">+358 40 654 0459</a>
     </div>
 
 </body>

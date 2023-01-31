@@ -13,7 +13,7 @@ include("includes/admin_panel.inc.php")
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <title>Digishop CICO Admin Panel</title>
-    <link rel="icon" type="image/ico" href="favicon.ico">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head>
 
 <body onload="document.body.style.opacity='1'">
@@ -33,7 +33,53 @@ include("includes/admin_panel.inc.php")
 
         <p>This is the Digishop CICO Admin panel. Here you can view entries, and sort them to your liking.</p>
 
-        
+        <nav class="navbar">
+            <ul class="items">
+
+                <li><a id="nav_users">Users</a></li>
+                <li><a id="nav_tables">Tables</a></li>
+                <li><a id="nav_console">Console</a></li>
+                <li><a id="nav_phpMyAdmin">phpMyAdmin</a></li>
+
+            </ul>
+        </nav>
+
+        <button id="showData">Show User Data</button>
+
+
+        <? if (mysqli_num_rows($result) > 0) {
+            echo
+                "<table><tr>
+
+  <th>id</th>
+  <th>UserID</th>
+  <th>Name</th>
+  <th>Surname</th>
+  <th>E-Mail</th>
+  <th>Date Registered</th>
+  <th>Is Admin</th>
+  
+  </tr>";
+
+            // output data of each row
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo
+                    "<tr>
+
+    <td>" . $row["id"] . "</td>
+    <td>" . $row["user_id"] . "</td>
+    <td>" . $row["name"] . "</td>
+    <td>" . $row["surname"] . "</td>
+    <td>" . $row["email"] . "</td>
+    <td>" . $row["date"] . "</td>
+    <td>" . $row["is_admin"] . "</td>
+
+    </tr>";
+            }
+            echo "</table>";
+        } else {
+            echo "0 results";
+        }?>
 
     </div>
 
@@ -50,5 +96,7 @@ include("includes/admin_panel.inc.php")
     </div>
 
 </body>
+
+<script src="js/JS_admin_panel.js"></script>
 
 </html>

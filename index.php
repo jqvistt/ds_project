@@ -21,7 +21,7 @@ include("includes/index.inc.php");
 </head>
 
 <body onload="document.body.style.opacity='1'">
-    <img class ="logo" src="CICO.png" alt="">
+    <img class="logo" src="CICO.png" alt="">
 
     <h1 id="title">Digishop CICO</h1>
 
@@ -33,7 +33,6 @@ include("includes/index.inc.php");
 
         <h1 id="current-time">00:00:00</h1>
 
-
         <p class="center" id="notice">
         <p>
 
@@ -42,14 +41,17 @@ include("includes/index.inc.php");
         <div class="options">
             <button class="action" id="checkinbtn" name="checkin_submit">Check-in</button>
             <button class="action" id="breakbtn" name="break_submit">Start break</button>
-            <button class="action" id="checkoutbtn" name="checkout_submit">Check-out</button>
+            <button class="action" id="checkoutbtn" name="checkout_submit" type="submit">Check-out</button>
         </div>
 
         <br>
-        <textarea id="comments" rows="5" cols="50" wrap="physical" name="comments" placeholder="Comments about the day..."></textarea>
+
+        <textarea id="comments" rows="5" cols="50" wrap="physical" name="comments"
+            placeholder="Comments about the day..."></textarea>
         <input class="files" type="file" name="files" id="file" multiple>
 
-        <br><br>
+        <br>
+        <br>
 
         <a class="button" href="mileage.php">Add mileage allowance</a>
 
@@ -59,23 +61,28 @@ include("includes/index.inc.php");
 
     <div id="admincontainer">
 
-        <!--         if the user is admin, display the button
- -->
+        <!--if the user is admin, display the button-->
         <?php
         if ($row['is_admin'] == 1) {
-            echo '<a class="button" href="http://localhost/phpmyadmin/" id="admin_panel">Admin Panel</a>';
+            echo '<a class="button" href="admin_panel.php" id="admin_panel">Admin Panel</a>';
         }
         ?>
 
     </div>
 
-    <br><br><br><br>
+    <br>
+    <br>
+    <br>
+    <br>
 
     <div class="footer">
+
         <a href="https://linktr.ee/trypzo">&#169; Joakim Lönnqvist 2023</a>
         <a href="mailto: joakim.is.lonnqvist@gmail.com">joakim.is.lonnqvist@gmail.com</a>
         <a href="tel: +358 40 654 0459">+358 40 654 0459</a>
+
     </div>
+
 </body>
 
 <script src="js/JS_Main.js"></script>

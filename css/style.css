@@ -88,6 +88,8 @@ body {
 .action:enabled:hover {
     background: #363650;
     cursor: pointer;
+    transform: scale(1.05);
+    transition: linear 0.02s;
 }
 
 .action:enabled:active {
@@ -121,6 +123,9 @@ body {
 .button:hover {
     background: #363650;
     cursor: pointer;
+
+    transform: scale(1.05);
+    transition: linear 0.02s;
 }
 
 .button:active {
@@ -174,7 +179,7 @@ body {
 .logo {
 
     position: absolute;
-    top: 5px;
+    top: 12.5px;
     left: 15px;
 
     width: 50px;
@@ -205,6 +210,15 @@ body {
     margin-left: 20px;
     text-decoration: none;
     color: rgb(124, 124, 124);
+
+}
+
+.footer a:hover {
+
+    transform: scale(1.05);
+    transition: linear 0.05s;
+    cursor: pointer;
+    color: rgb(109, 109, 109);
 
 }
 
@@ -253,3 +267,81 @@ body {
 
     }
 }
+
+
+/* Admin Panel Styling */
+.navbar {
+    background-color: #333;
+    border-radius: 5px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0px 0px 10px #aaa;
+
+    overflow-x: auto;
+    /* enable horizontal scrolling */
+    scroll-behavior: smooth;
+    /* enable smooth scrolling */
+    -webkit-overflow-scrolling: touch;
+    /* enable smooth scrolling on touch devices */
+    white-space: nowrap;
+    /* prevent line wrapping */
+    width: fit-content;
+    /* Fit navbar to content always */
+    margin-left: auto;
+    margin-right: auto;
+    /* Centers the navbar to the center box */
+
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    
+    /* prevent line wrapping */
+}
+
+.navbar li {
+    display: inline-block;
+    /* enable horizontal layout */
+    width: fit-content;
+}
+
+.navbar li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    width: fit-content; /* adjust width to fit content */
+    font-size: smaller;
+    text-decoration: none;
+}
+
+.navbar li a:hover {
+    background-color: #111;
+}
+
+.navbar::-webkit-scrollbar {
+    /* hide default scrollbar */
+    width: 0;
+    height: 0;
+}
+
+table {
+    border-collapse: collapse;
+    width: fit-content;
+  }
+  
+  th, td {
+    border: 1px solid black;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  th {
+    background-color: lightgray;
+  }

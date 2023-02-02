@@ -1,13 +1,14 @@
-window.addEventListener("load", function () {
-  let isActive = "false";
-  let onBreak = "false";
+window.addEventListener('load', function () {
+
+  let isActive = 'false';
+  let onBreak = 'false';
 
   let entryDateTime;
   let exitDateTime;
 
-  let breakStart = "";
-  let breakEnd = "";
-  let breakTime = "";
+  let breakStart;
+  let breakEnd;
+  let breakTime;
 
   let comments = "";
 
@@ -16,6 +17,7 @@ window.addEventListener("load", function () {
     url: "./includes/user_data.inc.php",
     dataType: "json",
     success: function (data) {
+
       // Set the JavaScript variables to the corresponding values
       isActive = data.isActive;
       onBreak = data.onBreak;
@@ -37,313 +39,223 @@ window.addEventListener("load", function () {
 
       console.log(comments);
 
+
       // Use the updated JavaScript variables to determine the initial state of the buttons and other elements on the page
 
       function updateButtonStyles(isActive, onBreak) {
-        if (isActive == "false" && onBreak == "false") {
-          document.getElementById("checkinbtn").disabled = false;
-          document.getElementById("breakbtn").disabled = true;
-          document.getElementById("breakbtn").style.background = "";
-          document.getElementById("checkoutbtn").disabled = true;
-        } else if (isActive == "true" && onBreak == "false") {
-          document.getElementById("checkinbtn").disabled = true;
 
-          document.getElementById("breakbtn").disabled = false;
-          document.getElementById("breakbtn").innerText = "Start break";
-          document.getElementById("breakbtn").style.background = "";
+        if (isActive == 'false' && onBreak == 'false'){
 
-          document.getElementById("checkoutbtn").disabled = false;
-        } else if (isActive == "true" && onBreak == "true") {
-          document.getElementById("checkinbtn").disabled = true;
+          document.getElementById('checkinbtn').disabled = false;
+          document.getElementById('breakbtn').disabled = true;
+          document.getElementById('breakbtn').style.background = "";
+          document.getElementById('checkoutbtn').disabled = true;
 
-          document.getElementById("breakbtn").disabled = false;
-
-          document.getElementById("breakbtn").innerText = "End break";
-          document.getElementById("breakbtn").style.background = "limegreen";
-
-          document.getElementById("checkoutbtn").disabled = true;
         }
+        else if (isActive == 'true' && onBreak == 'false'){
+
+          document.getElementById('checkinbtn').disabled = true;
+
+          document.getElementById('breakbtn').disabled = false;
+          document.getElementById('breakbtn').innerText = "Start break";
+          document.getElementById('breakbtn').style.background = "";
+
+          document.getElementById('checkoutbtn').disabled = false;
+
+        }
+        else if (isActive == 'true' && onBreak == 'true'){
+
+          document.getElementById('checkinbtn').disabled = true;
+
+          document.getElementById('breakbtn').disabled = false;
+
+          document.getElementById('breakbtn').innerText = "End break";
+          document.getElementById('breakbtn').style.background = "limegreen";
+          
+          document.getElementById('checkoutbtn').disabled = true;
+
+        }
+
       }
 
       updateButtonStyles(isActive, onBreak);
 
       //Check in button's functionality, checks for click and saves the date at time of click and logs the date in console along with a message.
-      document
-        .getElementById("checkinbtn")
-        .addEventListener("click", function () {
-          isActive = "true";
+      document.getElementById('checkinbtn').addEventListener('click', function () {
+        isActive = 'true';
 
-          let rawEntryDateTime = new Date();
-          entryDateTime = rawEntryDateTime.toLocaleString("en-GB");
-          console.log(`User checked in at ${entryDateTime}`);
+        let rawEntryDateTime = new Date();
+        entryDateTime = rawEntryDateTime.toLocaleString('en-GB');
+        console.log(`User checked in at ${entryDateTime}`);
 
-          //Gives the user a notice to indicate everythings working
-          document.getElementById("notice").innerHTML =
-            "You have been checked in successfully!";
-          setTimeout(function () {
-            document.getElementById("notice").innerHTML = "";
-          }, 2000);
+        //Gives the user a notice to indicate everythings working
+        document.getElementById('notice').innerHTML = 'You have been checked in successfully!';
+        setTimeout(function () {
+          document.getElementById("notice").innerHTML = "";
+        }, 2000);
 
-          //Trying to send the variables to the temp storage database by sending a post request to user_data.inc.php
-          var xhr = new XMLHttpRequest();
-          xhr.open("POST", "./includes/user_data.inc.php", true);
-          xhr.setRequestHeader(
-            "Content-Type",
-            "application/x-www-form-urlencoded"
-          );
-          xhr.onreadystatechange = function () {
-            if (this.readyState === 4 && this.status === 200) {
-              console.log(this.responseText);
-            }
-          };
-          xhr.send(
-            "&isActive=" +
-              isActive +
-              "&onBreak=" +
-              onBreak +
-              "&entryDateTime=" +
-              entryDateTime +
-              "&exitDateTime=" +
-              exitDateTime +
-              "&breakStart=" +
-              breakStart +
-              "&breakEnd=" +
-              breakEnd +
-              "&breakTime=" +
-              breakTime
-          );
+        //Trying to send the variables to the temp storage database by sending a post request to user_data.inc.php
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', './includes/user_data.inc.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function () {
+          if (this.readyState === 4 && this.status === 200) {
+            console.log(this.responseText);
+          }
+        };
+        xhr.send('&isActive=' + isActive + '&onBreak=' + onBreak + '&entryDateTime=' + entryDateTime + '&exitDateTime=' + exitDateTime + '&breakStart=' + breakStart + '&breakEnd=' + breakEnd + '&breakTime=' + breakTime);
 
-          updateButtonStyles(isActive, onBreak);
-        });
+        updateButtonStyles(isActive, onBreak);
+
+      });
 
       //Break button's functionality, checks for click and saves the date at time of click and logs the date in console along with a message.
-      document
-        .getElementById("breakbtn")
-        .addEventListener("click", function () {
-          if (onBreak == "false") {
-            onBreak = "true";
+      document.getElementById('breakbtn').addEventListener('click', function () {
+        if (onBreak == 'false') {
+          onBreak = 'true';
 
-            let breakStartDate = new Date();
-            breakStart = breakStartDate.toTimeString().slice(0, 8);
-
-            //Gives the user a notice to indicate everythings working
-            console.log("User has gone on break", breakStart);
-            document.getElementById("notice").innerHTML =
-              "Your break has begun!";
-            setTimeout(function () {
-              document.getElementById("notice").innerHTML = "";
-            }, 2000);
-          } else {
-            onBreak = "false";
-
-            let breakEndDate = new Date();
-            breakEnd = breakEndDate.toTimeString().slice(0, 8);
-
-            console.log("User has come back from break", breakEnd);
-
-            // convert the timestamps to Date objects
-            let start = new Date();
-            start.setHours(breakStart.split(":")[0]);
-            start.setMinutes(breakStart.split(":")[1]);
-            start.setSeconds(breakStart.split(":")[2]);
-
-            let end = new Date();
-            end.setHours(breakEnd.split(":")[0]);
-            end.setMinutes(breakEnd.split(":")[1]);
-            end.setSeconds(breakEnd.split(":")[2]);
-
-            let timeDiff = end - start; // get the difference in milliseconds
-            let seconds = Math.floor(timeDiff / 1000);
-            let minutes = Math.floor(seconds / 60);
-            let hours = Math.floor(minutes / 60);
-            minutes = minutes % 60;
-            seconds = seconds % 60;
-
-            breakTime = `${hours < 10 ? "0" + hours : hours}:${
-              minutes < 10 ? "0" + minutes : minutes
-            }:${seconds < 10 ? "0" + seconds : seconds}`;
-
-            console.log(`The users total break time is ${breakTime}`);
-
-            //Gives the user a notice to indicate everythings working
-            document.getElementById(
-              "notice"
-            ).innerHTML = `Your break has ended! Total time: ${breakTime}`;
-            setTimeout(function () {
-              document.getElementById("notice").innerHTML = "";
-            }, 3000);
-          }
-
-          //Trying to send the variables to the temp storage database by sending a post request to user_data.inc.php
-          var xhr = new XMLHttpRequest();
-          xhr.open("POST", "./includes/user_data.inc.php", true);
-          xhr.setRequestHeader(
-            "Content-Type",
-            "application/x-www-form-urlencoded"
-          );
-          xhr.onreadystatechange = function () {
-            if (this.readyState === 4 && this.status === 200) {
-              console.log(this.responseText);
-            }
-          };
-          xhr.send(
-            "&isActive=" +
-              isActive +
-              "&onBreak=" +
-              onBreak +
-              "&entryDateTime=" +
-              entryDateTime +
-              "&exitDateTime=" +
-              exitDateTime +
-              "&breakStart=" +
-              breakStart +
-              "&breakEnd=" +
-              breakEnd +
-              "&breakTime=" +
-              breakTime
-          );
-
-          updateButtonStyles(isActive, onBreak);
-        });
-
-      //The code for the check-out button
-      document
-        .getElementById("checkoutbtn")
-        .addEventListener("click", function () {
-          comments = document.getElementById("comments").value;
-          isActive = "false";
-
-          let rawExitDateTime = new Date();
-          exitDateTime = rawExitDateTime.toLocaleString("en-GB");
-
-          console.log(`User checked out at ${exitDateTime}`);
+          let breakStartDate = new Date();
+          breakStart = breakStartDate.toTimeString().slice(0, 8);
 
           //Gives the user a notice to indicate everythings working
-          document.getElementById("notice").innerHTML =
-            "You have been checked out successfully!";
+          console.log('User has gone on break', breakStart);
+          document.getElementById('notice').innerHTML = 'Your break has begun!';
           setTimeout(function () {
             document.getElementById("notice").innerHTML = "";
           }, 2000);
+        } else {
+          onBreak = 'false';
 
-          //Attempting to send the variables to the index pages include php file to add them to the registry
-          var xhr = new XMLHttpRequest();
-          xhr.open("POST", "./includes/index.inc.php", true);
-          xhr.setRequestHeader(
-            "Content-Type",
-            "application/x-www-form-urlencoded"
-          );
-          xhr.onreadystatechange = function () {
-            if (this.readyState === 4 && this.status === 200) {
-              console.log(this.responseText);
-            }
-          };
-          xhr.send(
-            "&entryDateTime=" +
-              entryDateTime +
-              "&exitDateTime=" +
-              exitDateTime +
-              "&breakStart=" +
-              breakStart +
-              "&breakEnd=" +
-              breakEnd +
-              "&comments=" +
-              comments +
-              "&breakTime=" +
-              breakTime
-          );
+          let breakEndDate = new Date();
+          breakEnd = breakEndDate.toTimeString().slice(0, 8);
 
-          //Attempting to send the file to the php script in binary.
-          document
-            .getElementById("fileInput")
-            .addEventListener("change", function (event) {
-              var file = event.target.files[0];
+          console.log('User has come back from break', breakEnd);
 
-              var reader = new FileReader();
-              reader.onload = function () {
-                var binaryData = reader.result;
-                var xhr = new XMLHttpRequest();
-                xhr.open("POST", "./includes/save_file.inc.php", true);
-                xhr.setRequestHeader(
-                  "Content-Type",
-                  "application/x-www-form-urlencoded"
-                );
-                xhr.onreadystatechange = function () {
-                  if (
-                    this.readyState === XMLHttpRequest.DONE &&
-                    this.status === 200
-                  ) {
-                    console.log(this.responseText);
-                  }
-                };
-                xhr.send("file=" + binaryData);
-              };
-              reader.readAsDataURL(file);
-            });
+          // convert the timestamps to Date objects
+          let start = new Date();
+          start.setHours(breakStart.split(":")[0]);
+          start.setMinutes(breakStart.split(":")[1]);
+          start.setSeconds(breakStart.split(":")[2]);
 
-          //Clears the Comment box
-          document.getElementById("comments").value = "";
+          let end = new Date();
+          end.setHours(breakEnd.split(":")[0]);
+          end.setMinutes(breakEnd.split(":")[1]);
+          end.setSeconds(breakEnd.split(":")[2]);
 
-          //Nullifying the variables
-          isActive = "false";
-          onBreak = "false";
+          let timeDiff = end - start; // get the difference in milliseconds
+          let seconds = Math.floor(timeDiff / 1000);
+          let minutes = Math.floor(seconds / 60);
+          let hours = Math.floor(minutes / 60);
+          minutes = minutes % 60;
+          seconds = seconds % 60;
 
-          entryDateTime = "";
-          exitDateTime = "";
+          breakTime = `${hours < 10 ? '0' + hours : hours}:${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
 
-          breakStart = "";
-          breakEnd = "";
-          breakTime = "";
+          console.log(`The users total break time is ${breakTime}`);
 
-          comments = "";
+          //Gives the user a notice to indicate everythings working
+          document.getElementById('notice').innerHTML = `Your break has ended! Total time: ${breakTime}`;
+          setTimeout(function () {
+            document.getElementById("notice").innerHTML = "";
+          }, 3000);
+        }
 
-          //Trying to send the NOW EMPTY variables to the temp storage database by sending a post request of the nullified variables to user_data.inc.php
-          var xhr = new XMLHttpRequest();
-          xhr.open("POST", "./includes/user_data.inc.php", true);
-          xhr.setRequestHeader(
-            "Content-Type",
-            "application/x-www-form-urlencoded"
-          );
-          xhr.onreadystatechange = function () {
-            if (this.readyState === 4 && this.status === 200) {
-              console.log(this.responseText);
-            }
-          };
-          xhr.send(
-            "&isActive=" +
-              isActive +
-              "&onBreak=" +
-              onBreak +
-              "&entryDateTime=" +
-              entryDateTime +
-              "&exitDateTime=" +
-              exitDateTime +
-              "&breakStart=" +
-              breakStart +
-              "&breakEnd=" +
-              breakEnd +
-              "&breakTime=" +
-              breakTime
-          );
+        //Trying to send the variables to the temp storage database by sending a post request to user_data.inc.php
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', './includes/user_data.inc.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function () {
+          if (this.readyState === 4 && this.status === 200) {
+            console.log(this.responseText);
+          }
+        };
+        xhr.send('&isActive=' + isActive + '&onBreak=' + onBreak + '&entryDateTime=' + entryDateTime + '&exitDateTime=' + exitDateTime + '&breakStart=' + breakStart + '&breakEnd=' + breakEnd + '&breakTime=' + breakTime);
 
-          updateButtonStyles(isActive, onBreak);
-        });
-    },
+        updateButtonStyles(isActive, onBreak);
+
+      });
+
+      //The code for the check-out button
+      document.getElementById('checkoutbtn').addEventListener('click', function () {
+
+        comments = document.getElementById("comments").value;
+        isActive = 'false';
+
+        let rawExitDateTime = new Date();
+        exitDateTime = rawExitDateTime.toLocaleString('en-GB');
+
+        console.log(`User checked out at ${exitDateTime}`);
+
+        //Gives the user a notice to indicate everythings working
+        document.getElementById('notice').innerHTML = 'You have been checked out successfully!';
+        setTimeout(function () {
+          document.getElementById("notice").innerHTML = "";
+        }, 2000);
+
+        //Trying to send the variables to the index pages include php file
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', './includes/index.inc.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function () {
+          if (this.readyState === 4 && this.status === 200) {
+            console.log(this.responseText);
+          }
+        };
+        xhr.send('&entryDateTime=' + entryDateTime + '&exitDateTime=' + exitDateTime + '&breakStart=' + breakStart + '&breakEnd=' + breakEnd + '&breakTime=' + breakTime);
+
+        //Clears the inputs
+        document.getElementById("comments").value = "";
+        document.getElementById("file").value = "";
+
+        //Nullifying the variables
+        isActive = 'false';
+        onBreak = 'false';
+
+        entryDateTime = "";
+        exitDateTime = "";
+
+        breakStart = "";
+        breakEnd = "";
+        breakTime = "";
+
+        comments = "";
+
+        //Trying to send the NOW EMPTY variables to the temp storage database by sending a post request of the nullified variables to user_data.inc.php
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', './includes/user_data.inc.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function () {
+          if (this.readyState === 4 && this.status === 200) {
+            console.log(this.responseText);
+          }
+        };
+        xhr.send('&isActive=' + isActive + '&onBreak=' + onBreak + '&entryDateTime=' + entryDateTime + '&exitDateTime=' + exitDateTime + '&breakStart=' + breakStart + '&breakEnd=' + breakEnd + '&breakTime=' + breakTime);
+
+        updateButtonStyles(isActive, onBreak);
+
+      });
+
+    }
+
   });
+
 });
 
 //The script for the live-clock that is on the page
 document.addEventListener("DOMContentLoaded", function (event) {
   setInterval(() => {
     var t = new Date();
-    var re = t.toLocaleString("en-GB");
+    var re = t.toLocaleString('en-GB');
     re = re.slice(12);
-    document.getElementById("current-time").innerHTML = re;
+    document.getElementById('current-time').innerHTML = re;
   }, 1000);
+
+
 });
 
-$(document).ready(function () {
-  $("#comments").on("input", function () {
-    this.style.height = "auto";
-    this.style.height = this.scrollHeight + "px";
+$(document).ready(function(){
+  $('#comments').on('input', function () {
+    this.style.height = 'auto';
+    this.style.height = (this.scrollHeight) + 'px';
   });
 });

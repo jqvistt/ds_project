@@ -93,7 +93,8 @@ body {
 }
 
 .action:enabled:active {
-    background-color: rgb(81, 127, 81);
+    transform: scale(1);
+    transition: linear 0.02s;
 }
 
 .action:disabled {
@@ -131,6 +132,8 @@ body {
 .button:active {
     background: #0e1729;
     box-shadow: 0px 0px 0px;
+    transform: scale(1);
+    transition: linear 0.02s;
 }
 
 .centerbox textarea {

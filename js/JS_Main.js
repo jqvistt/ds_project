@@ -10,7 +10,7 @@ window.addEventListener('load', function () {
   let breakEnd;
   let breakTime;
 
-  let comments = "";
+  let comments = '';
 
   $.ajax({
     type: "GET",
@@ -44,17 +44,19 @@ window.addEventListener('load', function () {
 
       function updateButtonStyles(isActive, onBreak) {
 
-        if (isActive == 'false' && onBreak == 'false'){
+        if (isActive == 'false' && onBreak == 'false') {
 
           document.getElementById('checkinbtn').disabled = false;
+          document.getElementById('checkinbtn').style.background = "";
+
           document.getElementById('breakbtn').disabled = true;
           document.getElementById('breakbtn').style.background = "";
           document.getElementById('checkoutbtn').disabled = true;
 
-        }
-        else if (isActive == 'true' && onBreak == 'false'){
+        } else if (isActive == 'true' && onBreak == 'false') {
 
           document.getElementById('checkinbtn').disabled = true;
+          document.getElementById('checkinbtn').style.background = "#3a4822";
 
           document.getElementById('breakbtn').disabled = false;
           document.getElementById('breakbtn').innerText = "Start break";
@@ -62,16 +64,16 @@ window.addEventListener('load', function () {
 
           document.getElementById('checkoutbtn').disabled = false;
 
-        }
-        else if (isActive == 'true' && onBreak == 'true'){
+        } else if (isActive == 'true' && onBreak == 'true') {
 
           document.getElementById('checkinbtn').disabled = true;
+          document.getElementById('checkinbtn').style.background = "#3a4822";
 
           document.getElementById('breakbtn').disabled = false;
 
           document.getElementById('breakbtn').innerText = "End break";
           document.getElementById('breakbtn').style.background = "limegreen";
-          
+
           document.getElementById('checkoutbtn').disabled = true;
 
         }
@@ -186,11 +188,23 @@ window.addEventListener('load', function () {
 
         console.log(`User checked out at ${exitDateTime}`);
 
+        /* Submitting the file input if length > 0 */
+
+        let fileInput = document.getElementById('fileInput');
+
+        if(fileInput.files.length > 0){
+        document.getElementById("file_form").submit();
+        }
+
         //Gives the user a notice to indicate everythings working
         document.getElementById('notice').innerHTML = 'You have been checked out successfully!';
         setTimeout(function () {
           document.getElementById("notice").innerHTML = "";
         }, 2000);
+
+        if (!document.getElementById("comments").value) {
+          comments = "No comments"
+        }
 
         //Trying to send the variables to the index pages include php file
         var xhr = new XMLHttpRequest();
@@ -204,8 +218,9 @@ window.addEventListener('load', function () {
         xhr.send('&entryDateTime=' + entryDateTime + '&exitDateTime=' + exitDateTime + '&breakStart=' + breakStart + '&breakEnd=' + breakEnd + '&breakTime=' + breakTime);
 
         //Clears the inputs
-        document.getElementById("comments").value = "";
-        document.getElementById("file").value = "";
+        if (document.getElementById("comments").value) {
+          document.getElementById("comments").value = "";
+        }
 
         //Nullifying the variables
         isActive = 'false';
@@ -218,7 +233,7 @@ window.addEventListener('load', function () {
         breakEnd = "";
         breakTime = "";
 
-        comments = "";
+        comments = "No comments";
 
         //Trying to send the NOW EMPTY variables to the temp storage database by sending a post request of the nullified variables to user_data.inc.php
         var xhr = new XMLHttpRequest();
@@ -253,7 +268,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 });
 
-$(document).ready(function(){
+$(document).ready(function () {
   $('#comments').on('input', function () {
     this.style.height = 'auto';
     this.style.height = (this.scrollHeight) + 'px';

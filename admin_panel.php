@@ -2,64 +2,57 @@
 
 include("includes/admin_panel.inc.php")
 
-    ?>
+  ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="css/style.css" rel="stylesheet" type="text/css" />
-        <title>Digishop CICO Admin Panel</title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    </head>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="css/admin_style.css" rel="stylesheet" type="text/css" />
+  <title>Digishop CICO Admin Dashboard</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</head>
 
-    <body onload="document.body.style.opacity='1'">
+<body onload="document.body.style.opacity='1'">
 
-        <h1 id="title">Digishop CICO Admin Panel</h1>
-
-        <div class="centerbox">
+  <div class="container">
 
 
 
-            <br>
+    <aside class="sidebar">
+      <img class="logo" src="cico.png" alt="">
+      <nav>
+        <h1>CICO</h1>
+        <ul>
+          <li><a href="#" id="dashboard">&#127899; Dashboard</a></li>
+          <li><a href="#" id="users">&#x270E; Users</a></li>
+          <li><a href="#" id="mileages">&#x1F6E7; Mileages</a></li>
+          <li><a href="#" id="reports">&#9888; Reports</a></li>
+          <li><a href="#" id="settings">&#9881; Settings</a></li>
 
-            <p class="center">Welcome,
-                <?php echo $user_data['name'], " ", $user_data['surname'], "!"; ?>
-            </p>
+            <li><a href="index.php">&#x21b6; Go Back</a></li>
+            <br><br>
+            <li><a href="includes/logout.inc.php">Log Out</a></li>
 
+        </ul>
+        <button id="menu-icon">&blacktriangleright;</button>
+      </nav>
+    </aside>
 
-            <p>This is the Digishop CICO Admin panel. Here you can view entries, and sort them to your liking.</p>
+    <main class="main-content">
+      <h1>Welcome to the Digishop CICO Admin Dashboard</h1>
+      <p>This is your dashboard where you can manage your website's content and users.</p>
 
-            <nav class="navbar">
-                <ul class="items">
+      <div id="container1">Information will be displayed here</div>
 
-                    <li><a id="nav_users">Users</a></li>
-                    <li><a id="nav_tables">Tables</a></li>
-                    <li><a id="nav_console">Console</a></li>
-                    <li><a id="nav_phpMyAdmin">phpMyAdmin</a></li>
+    </main>
+  </div>
 
-                </ul>
-            </nav>
+</body>
 
-        </div>
-
-        <a class="button" href="index.php">Go Back</a>
-
-        <a class="button" href="includes/logout.inc.php">Log out</a>
-
-        </div>
-
-        <div class="footer">
-            <a href="https://linktr.ee/trypzo">&#169; Joakim Lönnqvist 2023</a>
-            <a href="mailto: joakim.is.lonnqvist@gmail.com">joakim.is.lonnqvist@gmail.com</a>
-            <a href="tel: +358 40 654 0459">+358 40 654 0459</a>
-        </div>
-
-    </body>
-
-    <script src="js/JS_admin_panel.js"></script>
+<script src="js/JS_admin_panel.js"></script>
 
 </html>

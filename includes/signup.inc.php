@@ -39,12 +39,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $password = password_hash($password, PASSWORD_DEFAULT);
 
             //Save to database
-            $user_id = random_num(20);
-            $query = "INSERT INTO `users` (user_id,username,password,name,surname,email) VALUES ('$user_id','$user_name','$password','$name','$surname','$email')";
+            $uuid = generate_uuid();
+
+            $query = "INSERT INTO `users` (uuid,username,password,name,surname,email) VALUES ('$uuid','$user_name','$password','$name','$surname','$email')";
 
             if (mysqli_query($con, $query)) {
-                $query2 = "INSERT INTO `user_data` (user_id, isActive, onBreak, entryDateTime, exitDateTime, breakStart, breakEnd, breakTime) VALUES 
-                                        ('$user_id','$isActive','$onBreak','$entryDateTime','$exitDateTime','$breakStart','$breakEnd','$breakTime')
+                $query2 = "INSERT INTO `user_data` (uuid, isActive, onBreak, entryDateTime, exitDateTime, breakStart, breakEnd, breakTime) VALUES 
+                                        ('$uuid','$isActive','$onBreak','$entryDateTime','$exitDateTime','$breakStart','$breakEnd','$breakTime')
                                         ON DUPLICATE KEY UPDATE isActive = '$isActive', onBreak = '$onBreak', entryDateTime = '$entryDateTime', exitDateTime = '$exitDateTime', breakStart = '$breakStart', breakEnd = '$breakEnd', breakTime = '$breakTime'";
             }
 
@@ -66,5 +67,3 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 // Close the connection
 mysqli_close($con);
-
-?>

@@ -10,7 +10,7 @@ $user_data = check_login($con);
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     //something was posted
 
-    $user_id = $_SESSION['user_id'];
+    $uuid = $_SESSION['uuid'];
     $name = $user_data['name'];
     $surname = $user_data['surname'];
     $starting_location = $_POST['start_location'];
@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
         //Save to database
 
-        $query = "insert into `mileage_allowance` (user_id, name, surname, starting_location, ending_location, km_traveled, date_traveled) values ('$user_id','$name','$surname','$starting_location','$ending_location','$km_traveled','$date_traveled')";
+        $query = "INSERT INTO mileage_allowance (uuid, name, surname, starting_location, ending_location, km_traveled, date_traveled) values ('$uuid','$name','$surname','$starting_location','$ending_location','$km_traveled','$date_traveled')";
 
         if (!mysqli_query($con, $query)) {
             die("Error: " . mysqli_error($con));

@@ -4,6 +4,7 @@ session_start();
 include("connection.inc.php");
 include("functions.inc.php");
 
+
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     //something was posted
 
@@ -24,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $password_hash = $user_data['password'];
                 if (password_verify($password, $password_hash)) {
 
-                    $_SESSION['user_id'] = $user_data['user_id'];
+                    $_SESSION['uuid'] = $user_data['uuid'];
                     header("Location: index.php");
                     die;
                 }

@@ -100,6 +100,7 @@ body {
 .action:disabled {
     box-shadow: 0px 0px 0px;
     background-color: #696969;
+    transform: scale(0.95);
 }
 
 .button {
@@ -190,6 +191,16 @@ body {
 
 }
 
+#uuid {
+
+    color: lightgray;
+    font-size: 12px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    margin: 0px;
+
+}
+
 .footer {
     position: fixed;
     left: 0;
@@ -222,6 +233,18 @@ body {
     transition: linear 0.05s;
     cursor: pointer;
     color: rgb(109, 109, 109);
+
+}
+
+/* Dropdown start */
+
+/* Dropdown end */
+
+#fileInput {
+
+    padding: 5px;
+    position: absolute;
+    display: block;
 
 }
 
@@ -273,78 +296,50 @@ body {
 
 
 /* Admin Panel Styling */
-.navbar {
+.admin_navbar {
+    display: inline-block;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
     background-color: #333;
+    color: #fff;
+    border: none;
     border-radius: 5px;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    box-shadow: 0px 0px 10px #aaa;
-
-    overflow-x: auto;
-    /* enable horizontal scrolling */
-    scroll-behavior: smooth;
-    /* enable smooth scrolling */
-    -webkit-overflow-scrolling: touch;
-    /* enable smooth scrolling on touch devices */
-    white-space: nowrap;
-    /* prevent line wrapping */
-    width: fit-content;
-    /* Fit navbar to content always */
-    margin-left: auto;
-    margin-right: auto;
-    /* Centers the navbar to the center box */
-
 }
 
-.navbar ul {
-    list-style-type: none;
+.admin_navbar .items {
+    display: flex;
+    list-style: none;
     margin: 0;
     padding: 0;
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
-    
-    /* prevent line wrapping */
 }
 
-.navbar li {
-    display: inline-block;
-    /* enable horizontal layout */
-    width: fit-content;
+.admin_navbar .items li {
+    margin: 0 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #696969;
+    padding: 5px;
 }
 
-.navbar li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    width: fit-content; /* adjust width to fit content */
-    font-size: smaller;
+.admin_navbar .items li:hover {
+    cursor: pointer;
+    background-color: #505050;
+}
+
+
+.admin_navbar .items a {
+    color: #fff;
     text-decoration: none;
 }
 
-.navbar li a:hover {
-    background-color: #111;
-}
+@media screen and (max-width: 600px) {
+    .admin_navbar .items {
+        display: none;
+    }
 
-.navbar::-webkit-scrollbar {
-    /* hide default scrollbar */
-    width: 0;
-    height: 0;
+    .admin_navbar {
+        display: block;
+        text-align: center;
+    }
 }
-
-table {
-    border-collapse: collapse;
-    width: fit-content;
-  }
-  
-  th, td {
-    border: 1px solid black;
-    text-align: left;
-    padding: 8px;
-  }
-  
-  th {
-    background-color: lightgray;
-  }

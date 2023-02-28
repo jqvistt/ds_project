@@ -37,6 +37,7 @@ function check_admin($con, $user_data)
 }
 ;
 
+/* OLD USER ID GENERATING FUNCTION, SAVED FOR REFERENCE */
 /* function random_num($length = 5)
 {
     $text = "";

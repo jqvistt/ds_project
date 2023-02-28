@@ -56,7 +56,6 @@ window.addEventListener('load', function () {
         } else if (isActive == 'true' && onBreak == 'false') {
 
           document.getElementById('checkinbtn').disabled = true;
-          document.getElementById('checkinbtn').style.background = "#3a4822";
 
           document.getElementById('breakbtn').disabled = false;
           document.getElementById('breakbtn').innerText = "Start break";
@@ -67,7 +66,6 @@ window.addEventListener('load', function () {
         } else if (isActive == 'true' && onBreak == 'true') {
 
           document.getElementById('checkinbtn').disabled = true;
-          document.getElementById('checkinbtn').style.background = "#3a4822";
 
           document.getElementById('breakbtn').disabled = false;
 

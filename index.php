@@ -72,7 +72,7 @@ include("includes/index.inc.php");
         <!--if the user is admin, display the button-->
         <?php
         if ($row['is_admin'] == 1) {
-            echo '<a class="button" href="admin_panel.php" id="admin_panel">Admin Dashboard</a>';
+            echo '<a class="button" href="admin_panel/admin_panel.php" id="admin_panel">Admin Dashboard</a>';
         }
         ?>
 

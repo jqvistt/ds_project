@@ -48,7 +48,7 @@ body {
 .centerbox {
     width: fit-content;
     height: fit-content;
-    /* Make width to alway fit content */
+    /* Make width to always fit content */
 
     margin: 10px auto;
     /* Use shorthand notation */

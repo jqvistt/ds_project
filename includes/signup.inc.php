@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-include("includes/connection.inc.php");
-include("includes/functions.inc.php");
+include("connection.inc.php");
+include("functions.inc.php");
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     //something was posted
@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $surname = mysqli_real_escape_string($con, $_POST['surname']);
     $email = mysqli_real_escape_string($con, $_POST['email']);
 
-    $authkey = 'AC461-E15A5-2AA8C-A441B';
+    $authkey = 'AC461';
     $authkeyinput = mysqli_real_escape_string($con, $_POST['authkey']);
 
     $isActive = 'false';

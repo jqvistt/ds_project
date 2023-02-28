@@ -8,16 +8,23 @@ body {
   padding: 0;
 }
 
+#main-header{
+
+  font-size: 35px;
+  margin: 0 auto;
+
+}
+
 .container {
   display: flex;
   height: 100vh;
 }
 
 .logo {
-
+  display: flex;
   width: 100px;
   height: 100px;
-  position: absolute;
+  position:absolute;
   top: 10px;
   -webkit-filter: drop-shadow(5px 5px 5px #222);
   filter: drop-shadow(5px 5px 5px #222);
@@ -35,8 +42,10 @@ body {
 }
 
 .sidebar nav {
+
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
 }
@@ -57,7 +66,7 @@ body {
   font-size: 22px;
   padding: 10px 20px;
   border-radius: 10px;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease-in-out;
   display: block;
   text-align: center;
 }
@@ -68,12 +77,37 @@ body {
   transform: scale(1.1);
 }
 
+.small-icon {
+
+  width: 22px;
+  height: 22px;
+  filter: invert();
+  transition: all 0.3s ease-in-out;
+  display: inline-flex;
+  left: 2px;
+
+}
+
+.sidebar nav a:hover .small-icon {
+  transform: scale(1.25);
+  filter: none;
+  transition: all 0.3s ease-in-out;
+}
+
 .sidebar nav a:active {
   transform: scale(0.9);
 }
 
 .sidebar.open {
   left: 0;
+}
+
+.small-icon {
+
+  width: 22px;
+  height: 22px;
+  filter: invert();
+
 }
 
 #menu-icon {
@@ -87,13 +121,28 @@ body {
   top: 50%;
   left: 200px;
   text-align: center;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease-in-out;
 }
 
 #menu-icon:hover {
   cursor: pointer;
-  transition: all 0.3s ease;
+  padding: 10px 5px 10px 5px;
+  transition: all 0.3s ease-in-out;
   transform: scale(1.1);
+}
+
+.menu-arrow {
+  width: 22px;
+  height: 22px;
+  filter: invert();
+  transition: all 0.7s ease-in-out;
+}
+
+.menu-arrow.open {
+
+  transform: rotate(-540deg);
+  transition: all 0.7s ease-in-out;
+
 }
 
 
@@ -114,7 +163,66 @@ body {
 }
 
 
-.main-content {
+.content {
+  text-align: center;
   padding: 20px;
-  margin: 20px 40px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+#active-users-element{
+
+  font-size: 25px;
+
+}
+
+#users-table {
+  width: fit-content;
+}
+
+#users-table th, #users-table td {
+  padding: 8px;
+  text-align: left;
+}
+
+#users-table th {
+  color: #dadada;
+}
+
+#users-table tr:hover {
+  backdrop-filter: brightness(150%);
+  filter:drop-shadow(10) ;
+  transform: scale(1.01);
+  color: white;
+  cursor: default;
+  transition: all 0.1s ease; 
+}
+
+#users-table tr{
+  transition: all 0.1s ease; 
+  border-bottom: #ffff;
+}
+
+table{  
+
+  border-spacing: 0;
+
+}
+
+.table-box{
+  
+  background: #303030; 
+  color: #dadada;
+  border-radius: 5px;
+  border: none;
+
+}
+
+.add-user-button{
+
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+
 }
